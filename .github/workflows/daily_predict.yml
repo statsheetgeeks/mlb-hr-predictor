@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write               # Needed to push docs/index.html back
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Use Node.js 24 for all actions
+
 jobs:
   predict:
     runs-on: ubuntu-latest
