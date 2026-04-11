@@ -256,8 +256,22 @@ class FeatureBuilder:
         bat_feats_dict = self._batting_feature_dict_by_name(bat_df)
         pit_feats_dict = self._pitching_feature_dict_by_name(pit_df)
 
+        # Exact name lookup first; fall back to accent-stripped normalization
         bfeat = bat_feats_dict.get(batter_name)
+        if bfeat is None:
+            norm = _normalize_name(batter_name)
+            bfeat = next(
+                (v for k, v in bat_feats_dict.items() if _normalize_name(k) == norm),
+                None,
+            )
+
         pfeat = pit_feats_dict.get(pit_name)
+        if pfeat is None and pit_name not in ("Unknown", ""):
+            norm = _normalize_name(pit_name)
+            pfeat = next(
+                (v for k, v in pit_feats_dict.items() if _normalize_name(k) == norm),
+                None,
+            )
 
         if bfeat is None:
             return None
@@ -377,6 +391,19 @@ def _pct(series: pd.Series) -> pd.Series:
             return v / 100.0
         return v
     return series.apply(convert)
+
+
+def _normalize_name(name: str) -> str:
+    """
+    Strip accents and reduce to lowercase ASCII for fuzzy name matching.
+    Handles mismatches like 'Jose Ramirez' vs 'José Ramírez', or
+    'Vladimir Guerrero Jr.' vs 'Vladimir Guerrero Jr'.
+    """
+    import unicodedata
+    nfkd = unicodedata.normalize("NFKD", str(name))
+    ascii_str = nfkd.encode("ascii", "ignore").decode("ascii")
+    # Strip trailing punctuation differences (Jr., Sr., etc.)
+    return ascii_str.strip().rstrip(".").strip().lower()
 
 
 def _league_avg_pitcher() -> list:
