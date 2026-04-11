@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Large cache files – managed by GitHub Actions cache, not committed
+cache/statcast_*.parquet
+cache/statcast_*_meta.json
+
+# The small CSV stats files and the model ARE committed so they persist
+# between local runs without needing a re-download.
+# (Uncomment the lines below if you prefer not to commit them)
+# cache/batting_*.csv
+# cache/pitching_*.csv
+# cache/team_pitching_*.csv
+# cache/hr_model.joblib
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
