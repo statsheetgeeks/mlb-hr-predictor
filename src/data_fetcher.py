@@ -152,49 +152,95 @@ class DataFetcher:
         return existing
 
     # ═══════════════════════════════════════════════════════════════════════
-    # BATTING STATS  (FanGraphs season-level via pybaseball)
+    # BATTING STATS  (FanGraphs → Baseball Reference → Statcast fallback)
     # ═══════════════════════════════════════════════════════════════════════
 
     def get_batting_stats(self, year: int) -> pd.DataFrame:
+        """
+        Fetch batter season stats with a three-tier fallback:
+          1. FanGraphs via pybaseball.batting_stats()      – richest (Statcast metrics)
+          2. Baseball Reference via pybaseball.batting_stats_bref()  – reliable fallback
+          3. Empty DataFrame  (caller will derive from Statcast)
+        All sources are normalized to FanGraphs column names so features.py
+        works without modification regardless of which source is used.
+        """
         cache_file = os.path.join(CACHE_DIR, f"batting_{year}.csv")
 
-        # Refresh current-year stats every time (stats change daily)
+        # Past seasons: load from cache if available
         if year < CURRENT_YEAR and os.path.exists(cache_file):
             print(f"  [cache] Loading batting stats {year}.")
             return pd.read_csv(cache_file)
 
-        print(f"  [fetch] Downloading batting stats {year}…")
+        # ── Tier 1: FanGraphs ─────────────────────────────────────────────
+        print(f"  [fetch] Batting stats {year} – trying FanGraphs…")
         try:
             df = pybaseball.batting_stats(year, qual=1)
-            df.to_csv(cache_file, index=False)
-            return df
+            if df is not None and not df.empty:
+                df.to_csv(cache_file, index=False)
+                print(f"    ✓ FanGraphs batting stats {year} ({len(df)} players)")
+                return df
         except Exception as exc:
-            print(f"  WARNING: Could not fetch batting stats {year}: {exc}")
-            if os.path.exists(cache_file):
-                return pd.read_csv(cache_file)
-            return pd.DataFrame()
+            print(f"    FanGraphs failed: {exc}")
+
+        # ── Tier 2: Baseball Reference ────────────────────────────────────
+        print(f"  [fetch] Batting stats {year} – trying Baseball Reference…")
+        try:
+            df = pybaseball.batting_stats_bref(year)
+            if df is not None and not df.empty:
+                df = _normalize_batting_bref(df)
+                df.to_csv(cache_file, index=False)
+                print(f"    ✓ BBRef batting stats {year} ({len(df)} players)")
+                return df
+        except Exception as exc:
+            print(f"    Baseball Reference failed: {exc}")
+
+        # ── Tier 3: signal to caller to derive from Statcast ─────────────
+        print(f"  [warn] All batting stat sources failed for {year}.")
+        return pd.DataFrame()
 
     # ═══════════════════════════════════════════════════════════════════════
-    # PITCHING STATS  (FanGraphs season-level)
+    # PITCHING STATS  (FanGraphs → Baseball Reference → Statcast fallback)
     # ═══════════════════════════════════════════════════════════════════════
 
     def get_pitching_stats(self, year: int) -> pd.DataFrame:
+        """
+        Fetch pitcher season stats with a three-tier fallback:
+          1. FanGraphs via pybaseball.pitching_stats()
+          2. Baseball Reference via pybaseball.pitching_stats_bref()
+          3. Empty DataFrame  (caller will derive from Statcast)
+        """
         cache_file = os.path.join(CACHE_DIR, f"pitching_{year}.csv")
 
         if year < CURRENT_YEAR and os.path.exists(cache_file):
             print(f"  [cache] Loading pitching stats {year}.")
             return pd.read_csv(cache_file)
 
-        print(f"  [fetch] Downloading pitching stats {year}…")
+        # ── Tier 1: FanGraphs ─────────────────────────────────────────────
+        print(f"  [fetch] Pitching stats {year} – trying FanGraphs…")
         try:
             df = pybaseball.pitching_stats(year, qual=1)
-            df.to_csv(cache_file, index=False)
-            return df
+            if df is not None and not df.empty:
+                df.to_csv(cache_file, index=False)
+                print(f"    ✓ FanGraphs pitching stats {year} ({len(df)} players)")
+                return df
         except Exception as exc:
-            print(f"  WARNING: Could not fetch pitching stats {year}: {exc}")
-            if os.path.exists(cache_file):
-                return pd.read_csv(cache_file)
-            return pd.DataFrame()
+            print(f"    FanGraphs failed: {exc}")
+
+        # ── Tier 2: Baseball Reference ────────────────────────────────────
+        print(f"  [fetch] Pitching stats {year} – trying Baseball Reference…")
+        try:
+            df = pybaseball.pitching_stats_bref(year)
+            if df is not None and not df.empty:
+                df = _normalize_pitching_bref(df)
+                df.to_csv(cache_file, index=False)
+                print(f"    ✓ BBRef pitching stats {year} ({len(df)} players)")
+                return df
+        except Exception as exc:
+            print(f"    Baseball Reference failed: {exc}")
+
+        # ── Tier 3: signal to caller to derive from Statcast ─────────────
+        print(f"  [warn] All pitching stat sources failed for {year}.")
+        return pd.DataFrame()
 
     # ═══════════════════════════════════════════════════════════════════════
     # TEAM PITCHING (for bullpen stats)
@@ -218,6 +264,257 @@ class DataFetcher:
     # ═══════════════════════════════════════════════════════════════════════
     # HELPERS
     # ═══════════════════════════════════════════════════════════════════════
+
+    # ═══════════════════════════════════════════════════════════════════
+    # DERIVED STATS  (fallback when FanGraphs is unavailable)
+    # ═══════════════════════════════════════════════════════════════════
+
+    def derive_batting_stats(self, sc_df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Derive batter season stats directly from Statcast pitch-level data.
+        Used as a fallback when FanGraphs returns a 403 (blocks cloud IPs).
+        Output columns match FanGraphs names so features.py works unchanged.
+        """
+        if sc_df is None or sc_df.empty:
+            return pd.DataFrame()
+
+        print("  [derive] Computing batting stats from Statcast data...")
+
+        # PA-ending rows only
+        pa_df = sc_df[sc_df["events"].notna()].copy()
+        if pa_df.empty:
+            return pd.DataFrame()
+
+        # Batted-ball rows (type == 'X' in Statcast)
+        bb_df = (
+            sc_df[sc_df["type"] == "X"].copy()
+            if "type" in sc_df.columns
+            else pd.DataFrame()
+        )
+
+        # ── PA-level aggregation ───────────────────────────────────────────
+        def _pa_agg(grp):
+            pa      = len(grp)
+            hr      = int((grp["events"] == "home_run").sum())
+            bb      = int(grp["events"].isin(["walk", "intent_walk"]).sum())
+            hbp     = int((grp["events"] == "hit_by_pitch").sum())
+            k       = int(grp["events"].isin(["strikeout", "strikeout_double_play"]).sum())
+            singles = int((grp["events"] == "single").sum())
+            doubles = int((grp["events"] == "double").sum())
+            triples = int((grp["events"] == "triple").sum())
+            hits    = singles + doubles + triples + hr
+            slg     = (singles + 2*doubles + 3*triples + 4*hr) / pa if pa else 0.0
+            avg     = hits / pa if pa else 0.0
+            obp     = (hits + bb + hbp) / pa if pa else 0.0
+            return pd.Series({
+                "PA":  pa,  "HR": hr,  "BB": bb,  "K": k,
+                "HR_n": hr,           # kept for HR/FB calc
+                "Hits": hits,
+                "AVG":  avg, "SLG": slg, "ISO": slg - avg, "OBP": obp,
+                "BB%":  (bb / pa * 100) if pa else 0.0,
+                "K%":   (k  / pa * 100) if pa else 0.0,
+            })
+
+        pa_stats = (
+            pa_df.groupby("player_name", group_keys=False)
+            .apply(_pa_agg)
+            .reset_index()
+        )
+
+        # ── Batted-ball aggregation ────────────────────────────────────────
+        if not bb_df.empty and "player_name" in bb_df.columns:
+            def _bb_agg(grp):
+                n    = len(grp)
+                ev   = pd.to_numeric(grp.get("launch_speed",   pd.Series(dtype=float)), errors="coerce")
+                la   = pd.to_numeric(grp.get("launch_angle",   pd.Series(dtype=float)), errors="coerce")
+                hard = float((ev >= 95).sum() / n) if n else 0.0
+                brrl = (
+                    pd.to_numeric(grp["barrel"], errors="coerce").mean()
+                    if "barrel" in grp.columns else 0.0
+                )
+                n_fb = int((la >= 25).sum())
+                return pd.Series({
+                    "EV":      ev.mean()  if not ev.isna().all()  else 88.0,
+                    "LA":      la.mean()  if not la.isna().all()  else 12.0,
+                    "Hard%":   hard * 100,
+                    "Barrel%": (brrl * 100) if not pd.isna(brrl) else 0.0,
+                    "FB":      n_fb,
+                })
+
+            bb_stats = (
+                bb_df.groupby("player_name", group_keys=False)
+                .apply(_bb_agg)
+                .reset_index()
+            )
+            pa_stats = pa_stats.merge(bb_stats, on="player_name", how="left")
+            pa_stats["HR/FB"] = (
+                pa_stats["HR_n"] / pa_stats["FB"].clip(lower=1) * 100
+            ).fillna(0.0)
+        else:
+            pa_stats["EV"]      = 88.0
+            pa_stats["LA"]      = 12.0
+            pa_stats["Hard%"]   = 34.0
+            pa_stats["Barrel%"] = 7.5
+            pa_stats["HR/FB"]   = 0.0
+
+        pa_stats["Pull%"] = 40.0                          # league-avg default
+        pa_stats["xSLG"]  = pa_stats["SLG"].fillna(0.0)  # proxy
+
+        pa_stats.rename(columns={"player_name": "Name"}, inplace=True)
+
+        keep = [
+            "Name", "PA", "HR", "BB%", "K%", "ISO",
+            "AVG", "SLG", "OBP", "Barrel%", "EV",
+            "Hard%", "LA", "Pull%", "HR/FB", "xSLG",
+        ]
+        return pa_stats[[c for c in keep if c in pa_stats.columns]]
+
+    # ─────────────────────────────────────────────────────────────────────
+
+    def derive_pitching_stats(self, sc_df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Derive pitcher season stats directly from Statcast data.
+        Output columns match FanGraphs names so features.py works unchanged.
+        """
+        if sc_df is None or sc_df.empty:
+            return pd.DataFrame()
+
+        print("  [derive] Computing pitching stats from Statcast data...")
+
+        pa_df = sc_df[sc_df["events"].notna()].copy()
+        bb_df = (
+            sc_df[sc_df["type"] == "X"].copy()
+            if "type" in sc_df.columns
+            else pd.DataFrame()
+        )
+
+        # Resolve pitcher MLBAM IDs → full names
+        unique_ids = pa_df["pitcher"].dropna().astype(int).unique().tolist()
+        id_to_name = self._resolve_pitcher_names(unique_ids)
+
+        pa_df["pitcher_name"] = pa_df["pitcher"].map(id_to_name)
+        pa_df = pa_df[pa_df["pitcher_name"].notna()]
+
+        if pa_df.empty:
+            return pd.DataFrame()
+
+        if not bb_df.empty:
+            bb_df["pitcher_name"] = bb_df["pitcher"].map(id_to_name)
+            bb_df = bb_df[bb_df["pitcher_name"].notna()]
+
+        # Events that record outs (for IP estimation)
+        _SINGLE_OUTS = {
+            "strikeout", "field_out", "force_out", "sac_fly",
+            "sac_bunt", "fielders_choice_out", "fielders_choice",
+        }
+        _DOUBLE_OUTS = {
+            "strikeout_double_play", "grounded_into_double_play",
+            "double_play", "sac_fly_double_play",
+        }
+        _TRIPLE_OUTS = {"triple_play"}
+
+        def _pit_agg(grp):
+            pa  = len(grp)
+            hr  = int((grp["events"] == "home_run").sum())
+            bb  = int(grp["events"].isin(["walk", "intent_walk"]).sum())
+            k   = int(grp["events"].isin(["strikeout", "strikeout_double_play"]).sum())
+            outs = (
+                int(grp["events"].isin(_SINGLE_OUTS).sum())
+                + int(grp["events"].isin(_DOUBLE_OUTS).sum()) * 2
+                + int(grp["events"].isin(_TRIPLE_OUTS).sum()) * 3
+            )
+            ip  = max(outs / 3.0, 1.0)      # avoid division by zero
+            return pd.Series({
+                "IP":    ip,
+                "HR/9":  hr / ip * 9,
+                "K/9":   k  / ip * 9,
+                "BB/9":  bb / ip * 9,
+                "xFIP":  4.00,               # league-avg placeholder
+                "ERA":   4.00,
+            })
+
+        pit_stats = (
+            pa_df.groupby("pitcher_name", group_keys=False)
+            .apply(_pit_agg)
+            .reset_index()
+        )
+
+        # Batted-ball stats allowed
+        if not bb_df.empty and "pitcher_name" in bb_df.columns:
+            def _pit_bb_agg(grp):
+                n    = len(grp)
+                ev   = pd.to_numeric(grp.get("launch_speed", pd.Series(dtype=float)), errors="coerce")
+                hard = float((ev >= 95).sum() / n) if n else 0.0
+                brrl = (
+                    pd.to_numeric(grp["barrel"], errors="coerce").mean()
+                    if "barrel" in grp.columns else 0.0
+                )
+                return pd.Series({
+                    "EV":      ev.mean()  if not ev.isna().all()  else 88.0,
+                    "Hard%":   hard * 100,
+                    "Barrel%": (brrl * 100) if not pd.isna(brrl) else 0.0,
+                })
+
+            pit_bb = (
+                bb_df.groupby("pitcher_name", group_keys=False)
+                .apply(_pit_bb_agg)
+                .reset_index()
+            )
+            pit_stats = pit_stats.merge(pit_bb, on="pitcher_name", how="left")
+        else:
+            pit_stats["EV"]      = 88.0
+            pit_stats["Hard%"]   = 34.0
+            pit_stats["Barrel%"] = 7.5
+
+        pit_stats.rename(columns={"pitcher_name": "Name"}, inplace=True)
+
+        keep = ["Name", "IP", "HR/9", "xFIP", "Barrel%", "EV", "K/9", "BB/9", "Hard%", "ERA"]
+        return pit_stats[[c for c in keep if c in pit_stats.columns]]
+
+    # ─────────────────────────────────────────────────────────────────────
+
+    def _resolve_pitcher_names(self, mlbam_ids: list) -> dict:
+        """
+        Batch-resolve pitcher MLBAM IDs to full names via pybaseball.
+        Results are cached locally so repeat calls are instant.
+        """
+        if not mlbam_ids:
+            return {}
+
+        cache_path = os.path.join(CACHE_DIR, "pitcher_id_name_cache.json")
+
+        # Load existing cache
+        cached: dict[int, str] = {}
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path) as f:
+                    cached = {int(k): v for k, v in json.load(f).items()}
+            except Exception:
+                cached = {}
+
+        missing = [i for i in mlbam_ids if int(i) not in cached]
+
+        if missing:
+            try:
+                import pybaseball as pyb
+                lookup = pyb.playerid_reverse_lookup(missing, key_type="mlbam")
+                if lookup is not None and not lookup.empty:
+                    for _, row in lookup.iterrows():
+                        mid   = int(row.get("key_mlbam", 0))
+                        first = str(row.get("name_first", "")).strip().title()
+                        last  = str(row.get("name_last",  "")).strip().title()
+                        if mid and first and last:
+                            cached[mid] = f"{first} {last}"
+                with open(cache_path, "w") as f:
+                    json.dump({str(k): v for k, v in cached.items()}, f)
+            except Exception as exc:
+                print(f"  [warn] pitcher name lookup failed: {exc}")
+
+        return cached
+
+    # ═══════════════════════════════════════════════════════════════════
+    # HELPERS
+    # ═══════════════════════════════════════════════════════════════════
 
     @staticmethod
     def _season_month_ranges(year: int) -> list[tuple[str, str]]:
@@ -277,3 +574,84 @@ class DataFetcher:
     def _save_meta(path: str, data: dict):
         with open(path, "w") as f:
             json.dump(data, f)
+
+
+# ── Module-level helpers ──────────────────────────────────────────────────────
+
+def _normalize_batting_bref(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Translate Baseball Reference batting columns into FanGraphs naming so
+    features.py works unchanged regardless of which source provided the data.
+
+    BBRef has the core counting stats and rate stats but lacks Statcast
+    metrics (barrel%, exit velocity, hard-hit%, xSLG).  Those are filled
+    with league-average defaults so the feature vector stays complete.
+    """
+    def _num(col, default=0.0):
+        return pd.to_numeric(df.get(col, default), errors="coerce").fillna(default)
+
+    out             = pd.DataFrame()
+    out["Name"]     = df["Name"]
+    out["PA"]       = _num("PA",  0.0).clip(lower=1)
+    out["HR"]       = _num("HR",  0.0)
+
+    bb              = _num("BB",  0.0)
+    so              = _num("SO",  0.0)
+    pa              = out["PA"]
+
+    out["BB%"]      = bb / pa * 100          # stored as 0-100; _pct() converts
+    out["K%"]       = so / pa * 100
+    out["AVG"]      = _num("BA",  0.0)       # already a decimal (0.275)
+    out["OBP"]      = _num("OBP", 0.0)
+    out["SLG"]      = _num("SLG", 0.0)
+    out["ISO"]      = out["SLG"] - out["AVG"]
+    out["xSLG"]     = out["SLG"]             # SLG as proxy for xSLG
+
+    # Statcast metrics absent from BBRef – league-average defaults
+    out["Barrel%"]  = 7.5    # ~league avg barrel rate
+    out["EV"]       = 88.0   # mph
+    out["Hard%"]    = 34.0   # ~league avg hard-hit rate
+    out["LA"]       = 12.0   # degrees
+    out["Pull%"]    = 40.0   # %
+    out["HR/FB"]    = 0.0    # unknown without Statcast; model will weight low
+
+    return out[[
+        "Name", "PA", "HR", "BB%", "K%", "ISO",
+        "AVG", "SLG", "OBP", "Barrel%", "EV",
+        "Hard%", "LA", "Pull%", "HR/FB", "xSLG",
+    ]]
+
+
+def _normalize_pitching_bref(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Translate Baseball Reference pitching columns into FanGraphs naming.
+
+    BBRef pitching includes HR9, SO9, BB9, and FIP which map cleanly.
+    Statcast metrics (barrel%, exit velocity, hard-hit%) are filled with
+    league-average defaults.
+
+    BBRef column names used:
+      HR9  → HR/9    SO9 → K/9    BB9 → BB/9
+      FIP  → xFIP    ERA → ERA    IP  → IP
+    """
+    def _num(col, default=0.0):
+        return pd.to_numeric(df.get(col, default), errors="coerce").fillna(default)
+
+    out             = pd.DataFrame()
+    out["Name"]     = df["Name"]
+    out["IP"]       = _num("IP",   1.0).clip(lower=1)
+    out["HR/9"]     = _num("HR9",  1.3)
+    out["xFIP"]     = _num("FIP",  4.0)   # FIP is a good xFIP proxy
+    out["ERA"]      = _num("ERA",  4.0)
+    out["K/9"]      = _num("SO9",  8.5)
+    out["BB/9"]     = _num("BB9",  3.0)
+
+    # Statcast metrics absent from BBRef – league-average defaults
+    out["Barrel%"]  = 7.5
+    out["EV"]       = 88.0
+    out["Hard%"]    = 34.0
+
+    return out[[
+        "Name", "IP", "HR/9", "xFIP", "Barrel%",
+        "EV", "K/9", "BB/9", "Hard%", "ERA",
+    ]]
