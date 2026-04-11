@@ -13,6 +13,7 @@ import argparse
 import os
 import sys
 from datetime import datetime
+import pandas as pd
 
 
 def main():
@@ -30,7 +31,7 @@ def main():
         args.predict = True
 
     # ── Ensure output directories exist ──────────────────────────────────────
-    from config import CACHE_DIR, DOCS_DIR
+    from config import CACHE_DIR, DOCS_DIR, ALL_YEARS
     os.makedirs(CACHE_DIR, exist_ok=True)
     os.makedirs(DOCS_DIR, exist_ok=True)
 
@@ -54,14 +55,26 @@ def main():
     if args.train:
         _banner("DATA COLLECTION")
 
-        print("\n▸ Batting stats…")
-        batting_data = fetcher.get_batting_stats_all_years()
-
-        print("\n▸ Pitching stats…")
-        pitching_data = fetcher.get_pitching_stats_all_years()
-
         print("\n▸ Statcast (pitch-level, cached by season)…")
         statcast_data = fetcher.get_statcast_all_years()
+
+        print("\n▸ Batting stats…")
+        batting_data = {}
+        for yr in ALL_YEARS:
+            df = fetcher.get_batting_stats(yr)
+            if df.empty:
+                print(f"  [fallback] FanGraphs blocked – deriving batting stats {yr} from Statcast…")
+                df = fetcher.derive_batting_stats(statcast_data.get(yr, pd.DataFrame()))
+            batting_data[yr] = df
+
+        print("\n▸ Pitching stats…")
+        pitching_data = {}
+        for yr in ALL_YEARS:
+            df = fetcher.get_pitching_stats(yr)
+            if df.empty:
+                print(f"  [fallback] FanGraphs blocked – deriving pitching stats {yr} from Statcast…")
+                df = fetcher.derive_pitching_stats(statcast_data.get(yr, pd.DataFrame()))
+            pitching_data[yr] = df
 
         _banner("FEATURE ENGINEERING")
         from src.features import FeatureBuilder
