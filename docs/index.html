@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚾ MLB HR Predictor – Monday, May 18, 2026</title>
+  <title>⚾ MLB HR Predictor – Tuesday, May 19, 2026</title>
   <style>
     /* ── Reset & base ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,7 +240,7 @@
       <div>
         <h1>⚾ MLB <span>HR Predictor</span></h1>
         <div class="header-meta">
-          <strong>Monday, May 18, 2026</strong> &nbsp;·&nbsp; Updated 5:27 PM CT<br>
+          <strong>Tuesday, May 19, 2026</strong> &nbsp;·&nbsp; Updated 5:35 PM CT<br>
           Random Forest model · Statcast + FanGraphs · Open-Meteo weather
         </div>
       </div>
@@ -252,13 +252,246 @@
     <main>
       <div class="section-title">
         Today's Top Home Run Candidates
-        <span class="count-badge">0 players</span>
+        <span class="count-badge">13 players</span>
       </div>
       
-        <div class="no-games">
-          <span class="no-games-icon">⚾</span>
-          <h2>No games today</h2>
-          <p>Check back on a game day!</p>
+        <div class="table-wrap">
+          <table id="predictions">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Opp</th>
+                <th>Starter</th>
+                <th>Venue</th>
+                <th>Park Factor</th>
+                <th>Weather</th>
+                <th>HR Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="rank">#1</td>
+              <td class="player-cell">
+                <span class="player-name">Michael Harris II</span>
+                <span class="team-tag">ATL</span>
+              </td>
+              <td>Miami Marlins</td>
+              <td class="pitcher-cell">Braxton Garrett</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#2</td>
+              <td class="player-cell">
+                <span class="player-name">Matt Olson</span>
+                <span class="team-tag">ATL</span>
+              </td>
+              <td>Miami Marlins</td>
+              <td class="pitcher-cell">Braxton Garrett</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#3</td>
+              <td class="player-cell">
+                <span class="player-name">Esteury Ruiz</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.9%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#4</td>
+              <td class="player-cell">
+                <span class="player-name">Ozzie Albies</span>
+                <span class="team-tag">ATL</span>
+              </td>
+              <td>Miami Marlins</td>
+              <td class="pitcher-cell">Braxton Garrett</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#5</td>
+              <td class="player-cell">
+                <span class="player-name">Austin Riley</span>
+                <span class="team-tag">ATL</span>
+              </td>
+              <td>Miami Marlins</td>
+              <td class="pitcher-cell">Braxton Garrett</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#6</td>
+              <td class="player-cell">
+                <span class="player-name">Connor Norby</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:98.0%;background:#22c55e;"></div>  <span class="bar-label">24.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#7</td>
+              <td class="player-cell">
+                <span class="player-name">Xavier Edwards</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:96.0%;background:#22c55e;"></div>  <span class="bar-label">24.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#8</td>
+              <td class="player-cell">
+                <span class="player-name">Leo Jiménez</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:85.2%;background:#22c55e;"></div>  <span class="bar-label">21.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#9</td>
+              <td class="player-cell">
+                <span class="player-name">Otto Lopez</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:84.8%;background:#22c55e;"></div>  <span class="bar-label">21.2%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#10</td>
+              <td class="player-cell">
+                <span class="player-name">Ha-Seong Kim</span>
+                <span class="team-tag">ATL</span>
+              </td>
+              <td>Miami Marlins</td>
+              <td class="pitcher-cell">Braxton Garrett</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:84.4%;background:#22c55e;"></div>  <span class="bar-label">21.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#11</td>
+              <td class="player-cell">
+                <span class="player-name">Kyle Stowers</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:82.0%;background:#22c55e;"></div>  <span class="bar-label">20.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#12</td>
+              <td class="player-cell">
+                <span class="player-name">Christopher Morel</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:72.0%;background:#22c55e;"></div>  <span class="bar-label">18.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#13</td>
+              <td class="player-cell">
+                <span class="player-name">Joe Mack</span>
+                <span class="team-tag">MIA</span>
+              </td>
+              <td>Atlanta Braves</td>
+              <td class="pitcher-cell">Martín Pérez</td>
+              <td class="venue-cell">loanDepot park 🏟</td>
+              <td><span class="badge badge-bad">▼ 0.87</span></td>
+              <td class="weather-cell">
+                N/A°F<br>
+                Dome<br>
+                <span class="badge badge-neutral">Dome</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:65.6%;background:#22c55e;"></div>  <span class="bar-label">16.4%</span></div></td>
+            </tr></tbody>
+          </table>
         </div>
     </main>
 
@@ -327,7 +560,7 @@
     Data via <a href="https://github.com/jldbc/pybaseball">pybaseball</a>,
     <a href="https://open-meteo.com">Open-Meteo</a>,
     <a href="https://statsapi.mlb.com">MLB Stats API</a> &nbsp;·&nbsp;
-    Generated 2026-05-18 17:27 UTC
+    Generated 2026-05-19 17:35 UTC
   </footer>
 </body>
 </html>
