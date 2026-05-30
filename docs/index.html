@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚾ MLB HR Predictor – Friday, May 29, 2026</title>
+  <title>⚾ MLB HR Predictor – Saturday, May 30, 2026</title>
   <style>
     /* ── Reset & base ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,7 +240,7 @@
       <div>
         <h1>⚾ MLB <span>HR Predictor</span></h1>
         <div class="header-meta">
-          <strong>Friday, May 29, 2026</strong> &nbsp;·&nbsp; Updated 6:08 PM CT<br>
+          <strong>Saturday, May 30, 2026</strong> &nbsp;·&nbsp; Updated 4:01 PM CT<br>
           Random Forest model · Statcast + FanGraphs · Open-Meteo weather
         </div>
       </div>
@@ -252,13 +252,280 @@
     <main>
       <div class="section-title">
         Today's Top Home Run Candidates
-        <span class="count-badge">0 players</span>
+        <span class="count-badge">15 players</span>
       </div>
       
-        <div class="no-games">
-          <span class="no-games-icon">⚾</span>
-          <h2>No games today</h2>
-          <p>Check back on a game day!</p>
+        <div class="table-wrap">
+          <table id="predictions">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Opp</th>
+                <th>Starter</th>
+                <th>Venue</th>
+                <th>Park Factor</th>
+                <th>Weather</th>
+                <th>HR Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="rank">#1</td>
+              <td class="player-cell">
+                <span class="player-name">Dillon Dingler</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">34.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#2</td>
+              <td class="player-cell">
+                <span class="player-name">Randal Grichuk</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">33.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#3</td>
+              <td class="player-cell">
+                <span class="player-name">Miguel Vargas</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">32.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#4</td>
+              <td class="player-cell">
+                <span class="player-name">Matt Vierling</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">31.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#5</td>
+              <td class="player-cell">
+                <span class="player-name">Derek Hill</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">30.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#6</td>
+              <td class="player-cell">
+                <span class="player-name">Colson Montgomery</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">30.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#7</td>
+              <td class="player-cell">
+                <span class="player-name">Spencer Torkelson</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#8</td>
+              <td class="player-cell">
+                <span class="player-name">Chase Meidroth</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">26.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#9</td>
+              <td class="player-cell">
+                <span class="player-name">Jahmai Jones</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#10</td>
+              <td class="player-cell">
+                <span class="player-name">Andrew Benintendi</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:96.0%;background:#22c55e;"></div>  <span class="bar-label">24.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#11</td>
+              <td class="player-cell">
+                <span class="player-name">Riley Greene</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:88.0%;background:#22c55e;"></div>  <span class="bar-label">22.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#12</td>
+              <td class="player-cell">
+                <span class="player-name">Edgar Quero</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:87.6%;background:#22c55e;"></div>  <span class="bar-label">21.9%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#13</td>
+              <td class="player-cell">
+                <span class="player-name">Kevin McGonigle</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:86.4%;background:#22c55e;"></div>  <span class="bar-label">21.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#14</td>
+              <td class="player-cell">
+                <span class="player-name">Sam Antonacci</span>
+                <span class="team-tag">CWS</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:75.2%;background:#22c55e;"></div>  <span class="bar-label">18.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#15</td>
+              <td class="player-cell">
+                <span class="player-name">Zack Short</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Chicago White Sox</td>
+              <td class="pitcher-cell">Anthony Kay</td>
+              <td class="venue-cell">Rate Field</td>
+              <td><span class="badge badge-neutral">● 1.07</span></td>
+              <td class="weather-cell">
+                69.8°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.46)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:73.6%;background:#22c55e;"></div>  <span class="bar-label">18.4%</span></div></td>
+            </tr></tbody>
+          </table>
         </div>
     </main>
 
@@ -327,7 +594,7 @@
     Data via <a href="https://github.com/jldbc/pybaseball">pybaseball</a>,
     <a href="https://open-meteo.com">Open-Meteo</a>,
     <a href="https://statsapi.mlb.com">MLB Stats API</a> &nbsp;·&nbsp;
-    Generated 2026-05-29 18:08 UTC
+    Generated 2026-05-30 16:01 UTC
   </footer>
 </body>
 </html>
