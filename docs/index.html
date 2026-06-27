@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚾ MLB HR Predictor – Friday, June 26, 2026</title>
+  <title>⚾ MLB HR Predictor – Saturday, June 27, 2026</title>
   <style>
     /* ── Reset & base ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,7 +240,7 @@
       <div>
         <h1>⚾ MLB <span>HR Predictor</span></h1>
         <div class="header-meta">
-          <strong>Friday, June 26, 2026</strong> &nbsp;·&nbsp; Updated 4:57 PM CT<br>
+          <strong>Saturday, June 27, 2026</strong> &nbsp;·&nbsp; Updated 4:00 PM CT<br>
           Random Forest model · Statcast + FanGraphs · Open-Meteo weather
         </div>
       </div>
@@ -252,13 +252,535 @@
     <main>
       <div class="section-title">
         Today's Top Home Run Candidates
-        <span class="count-badge">0 players</span>
+        <span class="count-badge">30 players</span>
       </div>
       
-        <div class="no-games">
-          <span class="no-games-icon">⚾</span>
-          <h2>No games today</h2>
-          <p>Check back on a game day!</p>
+        <div class="table-wrap">
+          <table id="predictions">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Opp</th>
+                <th>Starter</th>
+                <th>Venue</th>
+                <th>Park Factor</th>
+                <th>Weather</th>
+                <th>HR Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="rank">#1</td>
+              <td class="player-cell">
+                <span class="player-name">Willson Contreras</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">39.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#2</td>
+              <td class="player-cell">
+                <span class="player-name">Jarren Duran</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">38.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#3</td>
+              <td class="player-cell">
+                <span class="player-name">Wilyer Abreu</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#4</td>
+              <td class="player-cell">
+                <span class="player-name">Christian Walker</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#5</td>
+              <td class="player-cell">
+                <span class="player-name">Riley Greene</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">34.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#6</td>
+              <td class="player-cell">
+                <span class="player-name">Spencer Torkelson</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">32.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#7</td>
+              <td class="player-cell">
+                <span class="player-name">Ben Rice</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">31.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#8</td>
+              <td class="player-cell">
+                <span class="player-name">Isaac Paredes</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">31.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#9</td>
+              <td class="player-cell">
+                <span class="player-name">Ceddanne Rafaela</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">31.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#10</td>
+              <td class="player-cell">
+                <span class="player-name">Caleb Durbin</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">30.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#11</td>
+              <td class="player-cell">
+                <span class="player-name">Cody Bellinger</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#12</td>
+              <td class="player-cell">
+                <span class="player-name">Kerry Carpenter</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#13</td>
+              <td class="player-cell">
+                <span class="player-name">Amed Rosario</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#14</td>
+              <td class="player-cell">
+                <span class="player-name">Paul Goldschmidt</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">29.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#15</td>
+              <td class="player-cell">
+                <span class="player-name">Kevin McGonigle</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#16</td>
+              <td class="player-cell">
+                <span class="player-name">Jake Meyers</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#17</td>
+              <td class="player-cell">
+                <span class="player-name">Jose Altuve</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#18</td>
+              <td class="player-cell">
+                <span class="player-name">Cam Smith</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">27.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#19</td>
+              <td class="player-cell">
+                <span class="player-name">Yainer Diaz</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">27.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#20</td>
+              <td class="player-cell">
+                <span class="player-name">Brice Matthews</span>
+                <span class="team-tag">HOU</span>
+              </td>
+              <td>Detroit Tigers</td>
+              <td class="pitcher-cell">Framber Valdez</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">26.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#21</td>
+              <td class="player-cell">
+                <span class="player-name">Colt Keith</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#22</td>
+              <td class="player-cell">
+                <span class="player-name">James Outman</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:98.8%;background:#22c55e;"></div>  <span class="bar-label">24.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#23</td>
+              <td class="player-cell">
+                <span class="player-name">Hao-Yu Lee</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:95.2%;background:#22c55e;"></div>  <span class="bar-label">23.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#24</td>
+              <td class="player-cell">
+                <span class="player-name">Jake Rogers</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:94.0%;background:#22c55e;"></div>  <span class="bar-label">23.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#25</td>
+              <td class="player-cell">
+                <span class="player-name">Austin Wells</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:82.0%;background:#22c55e;"></div>  <span class="bar-label">20.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#26</td>
+              <td class="player-cell">
+                <span class="player-name">Zach McKinstry</span>
+                <span class="team-tag">DET</span>
+              </td>
+              <td>Houston Astros</td>
+              <td class="pitcher-cell">Kai-Wei Teng</td>
+              <td class="venue-cell">Comerica Park</td>
+              <td><span class="badge badge-bad">▼ 0.89</span></td>
+              <td class="weather-cell">
+                76.3°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.26)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:79.2%;background:#22c55e;"></div>  <span class="bar-label">19.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#27</td>
+              <td class="player-cell">
+                <span class="player-name">Masataka Yoshida</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:78.8%;background:#22c55e;"></div>  <span class="bar-label">19.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#28</td>
+              <td class="player-cell">
+                <span class="player-name">Max Schuemann</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:77.6%;background:#22c55e;"></div>  <span class="bar-label">19.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#29</td>
+              <td class="player-cell">
+                <span class="player-name">Tsung-Che Cheng</span>
+                <span class="team-tag">BOS</span>
+              </td>
+              <td>New York Yankees</td>
+              <td class="pitcher-cell">Gerrit Cole</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:70.4%;background:#22c55e;"></div>  <span class="bar-label">17.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#30</td>
+              <td class="player-cell">
+                <span class="player-name">Anthony Volpe</span>
+                <span class="team-tag">NYY</span>
+              </td>
+              <td>Boston Red Sox</td>
+              <td class="pitcher-cell">Jake Bennett</td>
+              <td class="venue-cell">Fenway Park</td>
+              <td><span class="badge badge-bad">▼ 0.92</span></td>
+              <td class="weather-cell">
+                71.5°F<br>
+                Clear<br>
+                <span class="badge badge-good">↑ Out (+0.36)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:68.8%;background:#22c55e;"></div>  <span class="bar-label">17.2%</span></div></td>
+            </tr></tbody>
+          </table>
         </div>
     </main>
 
@@ -327,7 +849,7 @@
     Data via <a href="https://github.com/jldbc/pybaseball">pybaseball</a>,
     <a href="https://open-meteo.com">Open-Meteo</a>,
     <a href="https://statsapi.mlb.com">MLB Stats API</a> &nbsp;·&nbsp;
-    Generated 2026-06-26 16:57 UTC
+    Generated 2026-06-27 16:00 UTC
   </footer>
 </body>
 </html>
