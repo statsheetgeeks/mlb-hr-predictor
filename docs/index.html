@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚾ MLB HR Predictor – Tuesday, August 11, 2026</title>
+  <title>⚾ MLB HR Predictor – Wednesday, August 12, 2026</title>
   <style>
     /* ── Reset & base ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,7 +240,7 @@
       <div>
         <h1>⚾ MLB <span>HR Predictor</span></h1>
         <div class="header-meta">
-          <strong>Tuesday, August 11, 2026</strong> &nbsp;·&nbsp; Updated 3:52 PM CT<br>
+          <strong>Wednesday, August 12, 2026</strong> &nbsp;·&nbsp; Updated 3:53 PM CT<br>
           Random Forest model · Statcast + FanGraphs · Open-Meteo weather
         </div>
       </div>
@@ -252,13 +252,535 @@
     <main>
       <div class="section-title">
         Today's Top Home Run Candidates
-        <span class="count-badge">0 players</span>
+        <span class="count-badge">30 players</span>
       </div>
       
-        <div class="no-games">
-          <span class="no-games-icon">⚾</span>
-          <h2>No games today</h2>
-          <p>Check back on a game day!</p>
+        <div class="table-wrap">
+          <table id="predictions">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Opp</th>
+                <th>Starter</th>
+                <th>Venue</th>
+                <th>Park Factor</th>
+                <th>Weather</th>
+                <th>HR Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="rank">#1</td>
+              <td class="player-cell">
+                <span class="player-name">Pete Alonso</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">44.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#2</td>
+              <td class="player-cell">
+                <span class="player-name">Gunnar Henderson</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">43.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#3</td>
+              <td class="player-cell">
+                <span class="player-name">Christian Encarnacion-Strand</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">42.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#4</td>
+              <td class="player-cell">
+                <span class="player-name">Trea Turner</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">40.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#5</td>
+              <td class="player-cell">
+                <span class="player-name">Bryce Harper</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">39.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#6</td>
+              <td class="player-cell">
+                <span class="player-name">Brandon Marsh</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">38.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#7</td>
+              <td class="player-cell">
+                <span class="player-name">Kody Clemens</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">38.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#8</td>
+              <td class="player-cell">
+                <span class="player-name">Brooks Lee</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#9</td>
+              <td class="player-cell">
+                <span class="player-name">Alec Bohm</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#10</td>
+              <td class="player-cell">
+                <span class="player-name">JJ Wetherholt</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#11</td>
+              <td class="player-cell">
+                <span class="player-name">Jordan Walker</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.2%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#12</td>
+              <td class="player-cell">
+                <span class="player-name">Josh Bell</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.2%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#13</td>
+              <td class="player-cell">
+                <span class="player-name">Kyle Schwarber</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">37.0%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#14</td>
+              <td class="player-cell">
+                <span class="player-name">Alec Burleson</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">36.6%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#15</td>
+              <td class="player-cell">
+                <span class="player-name">Royce Lewis</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">35.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#16</td>
+              <td class="player-cell">
+                <span class="player-name">J.T. Realmuto</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">35.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#17</td>
+              <td class="player-cell">
+                <span class="player-name">Trevor Larnach</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">34.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#18</td>
+              <td class="player-cell">
+                <span class="player-name">Leody Taveras</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">33.9%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#19</td>
+              <td class="player-cell">
+                <span class="player-name">Nathan Church</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">33.5%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#20</td>
+              <td class="player-cell">
+                <span class="player-name">Jackson Holliday</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">32.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#21</td>
+              <td class="player-cell">
+                <span class="player-name">Bryson Stott</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">31.9%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#22</td>
+              <td class="player-cell">
+                <span class="player-name">Victor Caratini</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">28.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#23</td>
+              <td class="player-cell">
+                <span class="player-name">Ryan Kreidler</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">27.4%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#24</td>
+              <td class="player-cell">
+                <span class="player-name">Luke Keaschall</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.8%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#25</td>
+              <td class="player-cell">
+                <span class="player-name">Jimmy Crooks</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#26</td>
+              <td class="player-cell">
+                <span class="player-name">Masyn Winn</span>
+                <span class="team-tag">STL</span>
+              </td>
+              <td>Philadelphia Phillies</td>
+              <td class="pitcher-cell">Zack Wheeler</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:100.0%;background:#22c55e;"></div>  <span class="bar-label">25.2%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#27</td>
+              <td class="player-cell">
+                <span class="player-name">Luis Arraez</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:98.8%;background:#22c55e;"></div>  <span class="bar-label">24.7%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#28</td>
+              <td class="player-cell">
+                <span class="player-name">Justin Crawford</span>
+                <span class="team-tag">PHI</span>
+              </td>
+              <td>St. Louis Cardinals</td>
+              <td class="pitcher-cell">Kyle Leahy</td>
+              <td class="venue-cell">Busch Stadium</td>
+              <td><span class="badge badge-neutral">● 0.95</span></td>
+              <td class="weather-cell">
+                99.2°F<br>
+                Overcast<br>
+                <span class="badge badge-bad">↓ In (-0.13)</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:92.4%;background:#22c55e;"></div>  <span class="bar-label">23.1%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#29</td>
+              <td class="player-cell">
+                <span class="player-name">Alan Roden</span>
+                <span class="team-tag">MIN</span>
+              </td>
+              <td>Baltimore Orioles</td>
+              <td class="pitcher-cell">Shane Baz</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:89.2%;background:#22c55e;"></div>  <span class="bar-label">22.3%</span></div></td>
+            </tr>
+            <tr>
+              <td class="rank">#30</td>
+              <td class="player-cell">
+                <span class="player-name">Dylan Beavers</span>
+                <span class="team-tag">BAL</span>
+              </td>
+              <td>Minnesota Twins</td>
+              <td class="pitcher-cell">Zebby Matthews</td>
+              <td class="venue-cell">Target Field</td>
+              <td><span class="badge badge-neutral">● 1.00</span></td>
+              <td class="weather-cell">
+                88.4°F<br>
+                Clear<br>
+                <span class="badge badge-neutral">→ Cross</span>
+              </td>
+              <td class="prob-cell"><div class="bar-wrap">  <div class="bar-fill" style="width:86.8%;background:#22c55e;"></div>  <span class="bar-label">21.7%</span></div></td>
+            </tr></tbody>
+          </table>
         </div>
     </main>
 
@@ -327,7 +849,7 @@
     Data via <a href="https://github.com/jldbc/pybaseball">pybaseball</a>,
     <a href="https://open-meteo.com">Open-Meteo</a>,
     <a href="https://statsapi.mlb.com">MLB Stats API</a> &nbsp;·&nbsp;
-    Generated 2026-08-11 15:52 UTC
+    Generated 2026-08-12 15:53 UTC
   </footer>
 </body>
 </html>
